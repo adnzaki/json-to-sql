@@ -29,7 +29,7 @@ export const useSchemaStore = defineStore('schema', {
       normalizationLevel: '3nf_relational' as const,
       idStrategy: 'bigint_auto' as const,
       caseConvention: 'snake_case' as const,
-      pluralizeTableNames: true,
+      pluralizeTableNames: false,
       addTimestamps: true,
       addSoftDelete: false,
       autoIndexForeignKeys: true,

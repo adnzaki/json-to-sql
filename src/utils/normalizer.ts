@@ -9,6 +9,7 @@ import {
   formatIdentifier,
   inferColumnType,
   pluralize,
+  singularize,
   toSnakeCase,
 } from './typeInference';
 
@@ -81,7 +82,8 @@ function processCollection(
 ): string {
   const convention = ctx.options.caseConvention;
   let formattedTableName = formatIdentifier(rawTableName, convention);
-  if (ctx.options.pluralizeTableNames) {
+  // Only apply pluralization if explicitly enabled and this is a root entity, not already ending in s
+  if (ctx.options.pluralizeTableNames && !parentTable && !formattedTableName.endsWith('s')) {
     formattedTableName = pluralize(formattedTableName);
   }
 
@@ -394,8 +396,10 @@ function processCollection(
 
   // Now process pending nested extractions into child tables
   pendingNestedExtractions.forEach((ext) => {
-    let childTableName = `${toSnakeCase(finalTableName)}_${toSnakeCase(ext.propName)}`;
-    const fkColName = formatIdentifier(`${toSnakeCase(finalTableName)}_id`, convention);
+    const parentBase = singularize(toSnakeCase(finalTableName));
+    const childProp = toSnakeCase(ext.propName);
+    const childTableName = `${parentBase}_${childProp}`;
+    const fkColName = formatIdentifier(`${parentBase}_id`, convention);
 
     const childRecordsForProcessing = ext.childRecords.map((item) => ({
       ...item.data,

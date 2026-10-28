@@ -185,7 +185,7 @@ const applyAndReconvert = () => {
               @change="applyAndReconvert"
               class="rounded bg-slate-900 border-slate-700 text-indigo-600 focus:ring-0"
             />
-            <span class="text-slate-300">Pluralisasi Nama Tabel (order ➔ orders)</span>
+            <span class="text-slate-300">Pluralisasi Nama Tabel (Nonaktif / nama tabel normal asli)</span>
           </label>
 
           <label class="flex items-center gap-2.5 cursor-pointer">

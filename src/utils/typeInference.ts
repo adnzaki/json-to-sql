@@ -38,10 +38,15 @@ export function formatIdentifier(name: string, convention: 'snake_case' | 'camel
 }
 
 export function pluralize(noun: string): string {
+  if (!noun) return noun;
+  // If already ends in 's', do not modify to prevent double pluralization (e.g. orderses, itemses)
+  if (noun.endsWith('s')) {
+    return noun;
+  }
   if (noun.endsWith('y') && !/[aeiou]y$/i.test(noun)) {
     return noun.slice(0, -1) + 'ies';
   }
-  if (noun.endsWith('s') || noun.endsWith('x') || noun.endsWith('z') || noun.endsWith('ch') || noun.endsWith('sh')) {
+  if (noun.endsWith('x') || noun.endsWith('z') || noun.endsWith('ch') || noun.endsWith('sh')) {
     return noun + 'es';
   }
   return noun + 's';
