@@ -1,0 +1,6 @@
+{
+  "name": "SchemaCraft - JSON to SQL Database Designer & PWA Builder",
+  "description": "Visual PWA database designer and schema builder that intelligently converts JSON data into normalized MySQL and PostgreSQL schemas, with interactive ERD, optimization rules, and instant SQL exports.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
